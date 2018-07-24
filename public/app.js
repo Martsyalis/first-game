@@ -1,4 +1,3 @@
-
 var config = {
   type: Phaser.AUTO,
   width: 800,
@@ -21,7 +20,7 @@ var player;
 var platforms;
 var score = 0;
 var scoreText;
-var gameOver
+var gameOver;
 
 var game = new Phaser.Game(config);
 
@@ -125,12 +124,8 @@ function update() {
   if (cursors.up.isDown && player.body.touching.down) {
     player.setVelocityY(-330);
   }
-  if(gameOver === true)   setTimeout(() =>document.location.reload(), 3000)
-
-
+  if (gameOver === true) setTimeout(() => document.location.reload(), 3000);
 }
-
-
 
 //Helpers
 
@@ -149,7 +144,6 @@ function collectStar(player, star) {
   }
 }
 
-
 function makeABomb() {
   var x =
     player.x < 400
@@ -164,27 +158,23 @@ function makeABomb() {
 }
 
 function hitBomb(player, bomb) {
-
   player.setTint(0xff0000);
 
-  console.log('we are in hitBomb');
+  console.log("we are in hitBomb");
 
   player.anims.play("turn");
-
 
   const gameOverScreen = this.add.text(50, 180, gameOverText(3), {
     fontSize: "22px",
     fill: "#000"
   });
 
-  function gameOverText(timeRemaining){
-      console.log('something is happening');
-    return (`Game Over, Your final score is ${score}, Restarting in ${timeRemaining}s`)
+  function gameOverText(timeRemaining) {
+    console.log("something is happening");
+    return `Game Over, Your final score is ${score}, Restarting in ${timeRemaining}s`;
   }
 
   gameOver = true;
 
   this.physics.pause();
-
-
 }
